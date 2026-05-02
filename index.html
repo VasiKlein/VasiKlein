@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VasiKlein</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
+    body, a, button { cursor: url('pointer.cur'), auto; }
+
+    body {
+      min-height: 180vh;
+      background: radial-gradient(circle at 20% 20%, #c3d7ff, transparent 40%),
+                  radial-gradient(circle at 80% 30%, #ffe9c9, transparent 45%),
+                  radial-gradient(circle at 70% 80%, #d6e4ff, transparent 40%),
+                  #0c0f14;
+      background-size: 200% 200%;
+      animation: bgMove 40s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      color: #ffffff;
+      padding: 120px 0;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    .card {
+      width: 100%;
+      max-width: 720px;
+      padding: 60px;
+      border-radius: 26px;
+      background: rgba(25, 30, 45, 0.75);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.9);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .avatar {
+      width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.6);
+      margin-bottom: 25px;
+    }
+
+    h1 { font-size: 30px; margin-bottom: 10px; }
+
+    .role { margin-bottom: 28px; color: #e6eeff; }
+
+    .desc {
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 20px;
+      text-align: left;
+      color: #f2f2f2;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .links a {
+      padding: 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #ffffff;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .links a:hover {
+      background: linear-gradient(135deg, #d6e4ff, #ffe9c9);
+      color: #0c0f14;
+      box-shadow: 0 0 20px rgba(255, 230, 180, 0.5);
+    }
+
+    /* hover text swap */
+    .swap span.alt {
+      position: absolute;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .swap:hover span.main { opacity: 0; }
+    .swap:hover span.alt { opacity: 1; }
+
+    .footer { margin-top: 45px; opacity: 0.6; }
+
+    .loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader.hidden { opacity: 0; pointer-events: none; }
+
+    .spinner {
+      width: 50px; height: 50px;
+      border: 3px solid rgba(255,255,255,0.2);
+      border-top: 3px solid #ffffff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <div style="height:120px;"></div> <!-- top spacer -->
+
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <div>Loading</div>
+  </div>
+
+  <div class="card" id="card">
+    <img class="avatar" src="https://i.postimg.cc/L60Q8938/295629a06865d55e311def30f39c820f.jpg">
+    <h1>VasiKlein</h1>
+    <div class="role">Game Developer, Scriptwriter, Designer and Editor</div>
+
+    <p class="desc">Привет! Я занимаюсь разработкой с 2023 года и за это время успел приобрести разносторонний опыт в создании игр, написании скриптов, а также разработке интерфейсов и визуального дизайна.</p>
+
+    <p class="desc">В настоящее время я работаю над собственным проектом — Königsbrücke Subway Simulator (KSS Metro Project), который в скором времени станет доступен пользователям. Это проект, в котором я полностью контролирую весь процесс разработки: от идеи и концепции до программирования, дизайна и оптимизации.</p>
+
+    <p class="desc">Помимо личного проекта, я активно участвую в командной разработке, выступая в роли разработчика, дизайнера и скриптера.</p>
+
+    <div class="links">
+      <a href="https://www.roblox.com/share?code=adf7a0f33e88c54d9ac66eae18d2dc73&type=ExperienceDetails&stamp=1767434899858" target="_blank">Roblox Game</a>
+      <a href="https://www.roblox.com/share/g/35305321" target="_blank">Roblox Group</a>
+      <a href="https://www.youtube.com/@KSS_Roblox" target="_blank">YouTube</a>
+      <a href="https://x.com/kleinzzz54542" target="_blank">X (Twitter)</a>
+      <a href="https://www.instagram.com/kss.rbx?igsh=NDcxMWgzNnV6dXpz" target="_blank">Instagram</a>
+      <a href="https://discord.gg/C3zUu9krcQ" target="_blank">Discord Project</a>
+
+      <a href="#" class="swap" onclick="event.preventDefault()">
+        <span class="main">Discord Account</span>
+        <span class="alt">@vasi.klein</span>
+      </a>
+    </div>
+
+    <div class="footer">© 2026</div>
+  </div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  const card = document.getElementById('card');
+
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    setTimeout(() => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 500);
+  }, 5000);
+});
+</script>
+
+  <div style="height:120px;"></div> <!-- bottom spacer -->
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  const card = document.getElementById('card');
+
+  setTimeout(() => {
+    loader.classList.add('hidden');
+
+    setTimeout(() => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+
+      // текст анимация
+      const texts = document.querySelectorAll('.desc');
+      texts.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+
+        setTimeout(() => {
+          el.style.transition = 'all 0.6s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 300 * (i + 1));
+      });
+
+    }, 500);
+  }, 5000);
+});
+</script>
+
+</body>
+</html>
