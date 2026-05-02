@@ -14,13 +14,14 @@
     /* Custom small cursor */
     .cursor {
       position: fixed;
-      width: 10px;
-      height: 10px;
+      width: 14px;
+      height: 14px;
       background: #000;
-      border-radius: 3px;
+      clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+      border-radius: 2px;
       pointer-events: none;
       z-index: 10000;
-      transform: translate(-50%, -50%) rotate(-20deg);
+      transform: translate(-50%, -50%) rotate(-25deg);
     }
 
     body {
