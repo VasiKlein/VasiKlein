@@ -8,8 +8,20 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-    /* Cursor (уменьшен через hotspot, но реальный размер зависит от файла .cur) */
-    body, a, button { cursor: url('pointer.cur') 1 1, auto; }
+    /* Hide default cursor */
+    body, a, button { cursor: none; }
+
+    /* Custom small cursor */
+    .cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #000;
+      border-radius: 3px;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%) rotate(-20deg);
+    }
 
     body {
       min-height: 180vh;
@@ -132,6 +144,8 @@
 </head>
 <body>
 
+  <div class="cursor" id="cursor"></div>
+
   <div style="height:120px;"></div> <!-- top spacer -->
 
   <div class="loader" id="loader">
@@ -212,6 +226,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }, 5000);
 });
+
+// custom cursor move
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
 </script>
 
 </body>
