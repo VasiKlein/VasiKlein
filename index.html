@@ -12,7 +12,7 @@
 
     body, a, button { cursor: none; }
 
-    /* Cursor */
+    /* ===== CURSOR ===== */
     .cursor {
       position: fixed;
       width: 20px;
@@ -22,6 +22,7 @@
       transform: translate(-30%, -30%);
     }
 
+    /* белый stroke (УСИЛЕН) */
     .cursor::before {
       content: "";
       position: absolute;
@@ -29,10 +30,19 @@
       height: 100%;
       background: url('https://i.postimg.cc/mDpsnTY8/Picsart-26-05-02-10-00-46-202.png') no-repeat center;
       background-size: contain;
-      filter:
-        brightness(0)
-        drop-shadow(0 0 1px #fff)
-        drop-shadow(0 0 1px #fff);
+      filter: brightness(0) invert(1);
+      transform: scale(1.15); /* БЫЛО 1.06 → теперь толще */
+    }
+
+    /* черный курсор */
+    .cursor::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.postimg.cc/mDpsnTY8/Picsart-26-05-02-10-00-46-202.png') no-repeat center;
+      background-size: contain;
+      filter: brightness(0);
     }
 
     body {
@@ -107,7 +117,6 @@
       border: 1px solid rgba(255,255,255,0.3);
       transition: all 0.35s ease;
       position: relative;
-      overflow: hidden;
     }
 
     .links a:hover {
@@ -129,6 +138,7 @@
 
     .footer { margin-top: 45px; opacity: 0.6; }
 
+    /* loader */
     .loader {
       position: fixed;
       top: 0; left: 0;
@@ -176,19 +186,12 @@
   <h1>VasiKlein</h1>
   <div class="role">Game Developer, Scriptwriter, Designer and Editor</div>
 
-  <p class="desc">Hi! I've been working in development since 2023, and during this time, I've gained diverse experience in game creation, scripting, interface development, and visual design.</p>
-
-  <p class="desc">I'm currently working on my own project, Königsbrücke Subway Simulator (KSS Metro Project), which will soon be available to users. This is a project in which I have complete control over the entire development process.</p>
-
-  <p class="desc">In addition to my personal project, I actively participate in team development, serving as a developer, designer, and scripter.</p>
+  <p class="desc">Hi! I've been working in development since 2023.</p>
 
   <div class="links">
-    <a href="https://www.roblox.com/share?code=adf7a0f33e88c54d9ac66eae18d2dc73&type=ExperienceDetails&stamp=1767434899858" target="_blank">Roblox Game</a>
-    <a href="https://www.roblox.com/share/g/35305321" target="_blank">Roblox Group</a>
-    <a href="https://www.youtube.com/@KSS_Roblox" target="_blank">YouTube</a>
-    <a href="https://x.com/kleinzzz54542" target="_blank">X (Twitter)</a>
-    <a href="https://www.instagram.com/kss.rbx?igsh=NDcxMWgzNnV6dXpz" target="_blank">Instagram</a>
-    <a href="https://discord.gg/C3zUu9krcQ" target="_blank">Discord Project</a>
+    <a href="https://www.roblox.com/">Roblox Game</a>
+    <a href="#">YouTube</a>
+    <a href="#">Discord</a>
 
     <a href="#" class="swap" onclick="event.preventDefault()">
       <span class="main">Discord Account</span>
@@ -202,7 +205,10 @@
 
 <div style="height:120px;"></div>
 
-<audio id="hoverSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
+<!-- звук -->
+<audio id="hoverSound" preload="auto">
+  <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 const cursor = document.getElementById('cursor');
@@ -212,16 +218,18 @@ document.addEventListener('mousemove', (e) => {
   cursor.style.top = e.clientY + 'px';
 });
 
+/* звук hover */
 const sound = document.getElementById('hoverSound');
 
 document.querySelectorAll('.links a').forEach(btn => {
   btn.addEventListener('mouseenter', () => {
     sound.currentTime = 0;
-    sound.volume = 0.25;
-    sound.play();
+    sound.volume = 0.15;
+    sound.play().catch(()=>{});
   });
 });
 
+/* загрузка */
 window.addEventListener('DOMContentLoaded', () => {
   const loader = document.getElementById('loader');
   const card = document.getElementById('card');
@@ -232,20 +240,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       card.style.opacity = '1';
       card.style.transform = 'translateY(0)';
-
-      const texts = document.querySelectorAll('.desc');
-      texts.forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-
-        setTimeout(() => {
-          el.style.transition = 'all 0.6s ease';
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }, 300 * (i + 1));
-      });
-
-    }, 500);
+    }, 400);
 
   }, 5000);
 });
